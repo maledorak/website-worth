@@ -13,7 +13,7 @@ from website_worth.constants import (
 @click.command(help="Run website_worth.")
 @click.option("-c", "--calc", required=True, type=click.Choice(SUPPORTED_CALCS), default=WEBUKA)
 @click.argument("site_url", required=True, type=click.STRING)
-def run(calc, site_url, **cli_kwargs):
+def run(calc, site_url):
     scraper = get_scraper(calc)
     scraper.run(site_url)
 
@@ -22,10 +22,9 @@ def run(calc, site_url, **cli_kwargs):
 def version():
     click.echo(__version__)
 
-# todo add invoking run subcommand when no subcommand passed
-@click.group(invoke_without_command=True)
-@click.pass_context
-def main(ctx, *args, **kwargs):
+# todo add invoking run subcommand when no subcommand passed (use invoke_without_command=True)
+@click.group()
+def main():
     pass
 
 main.add_command(run)

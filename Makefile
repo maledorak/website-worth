@@ -16,11 +16,12 @@ export BROWSER_PYSCRIPT
 define PRINT_HELP_PYSCRIPT
 import re, sys
 
+print("{ln}{sp}HELP{sp}{ln}".format(ln=25*"=", sp=5*" "))
 for line in sys.stdin:
 	match = re.match(r'^([a-zA-Z_-]+):.*?## (.*)$$', line)
 	if match:
 		target, help = match.groups()
-		print("%-20s %s" % (target, help))
+		print(" - {:26} {}".format(target, help))
 endef
 export PRINT_HELP_PYSCRIPT
 
