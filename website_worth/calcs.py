@@ -1,9 +1,12 @@
 import click
+import fake_useragent
 import requests
 from bs4 import BeautifulSoup
 from requests import codes
 
 from website_worth.constants import SCRAPERS
+
+user_agent = fake_useragent.UserAgent(fallback='Chrome')
 
 
 class BaseConfigScraper(object):
@@ -37,9 +40,11 @@ class WebukaScraper(BaseConfigScraper):
     NAME = 'https://webuka.com'
 
     def get(self, url):
-        req = requests.post(self.URL, data={
-            "www": url
-        })
+        req = requests.post(
+            self.URL,
+            data={"www": url},
+            headers={"User-Agent": user_agent.random}
+        )
         if req.status_code is codes.OK:
             return req.content
         else:

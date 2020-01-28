@@ -14,7 +14,8 @@ with open('CHANGELOG.md', encoding='utf-8') as changelog_file:
 requirements = [
     'Click>=7.0',
     'requests>=2.22',
-    'beautifulsoup4>=4.8'
+    'beautifulsoup4>=4.8',
+    'fake-useragent>=0.1.11'
 ]
 
 setup_requirements = [ ]
